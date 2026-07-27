@@ -434,8 +434,8 @@ pytest test_app.py -v
 
 Passionate about cybersecurity, secure software development, phishing detection, and building practical defensive security tools.
 
-- GitHub: https://github.com/YOUR_USERNAME
-- LinkedIn: https://linkedin.com/in/YOUR_PROFILE
+- GitHub: https://github.com/abdulrehman-at3
+- LinkedIn: https://linkedin.com/in/mabdul-rehman/
 
 ---
 
