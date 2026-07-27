@@ -1,102 +1,115 @@
 # 🛡️ PhishGuard
 
-> **Professional Context-Aware Phishing Email Detection System**
->
-> Built with **Python**, **Flask**, and **Cybersecurity Best Practices** to intelligently distinguish between legitimate emails and phishing attempts using evidence-based analysis rather than simple keyword matching.
+<div align="center">
+
+### Professional Context-Aware Phishing Email Detection System
+
+Built with **Python**, **Flask**, and **Cybersecurity Best Practices** to intelligently distinguish between legitimate emails and phishing attempts using evidence-based analysis rather than simple keyword matching.
+
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black?style=for-the-badge&logo=flask)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
+
+</div>
 
 ---
 
-## 📖 Overview
+# 📖 Overview
 
-**PhishGuard** is a cybersecurity-focused web application designed to analyze email content and determine whether it is legitimate or potentially malicious.
+**PhishGuard** is a cybersecurity-focused web application designed to analyze email content and determine whether an email is legitimate or a potential phishing attempt.
 
-Unlike traditional keyword-based phishing detectors, **PhishGuard v2** introduces **context-aware detection**, allowing it to recognize the difference between:
+Unlike traditional phishing detectors that rely primarily on suspicious keywords, PhishGuard evaluates the **context** of an email before making a decision. The system analyzes the email's purpose, verifies sender authenticity, inspects embedded URLs, searches for phishing indicators, and generates an evidence-based risk score with a clear verdict.
 
-- Promotional marketing emails
-- Account security notifications
-- Transactional emails
-- Newsletters
-- Personal correspondence
+The goal is to significantly reduce false positives while providing users with transparent explanations through both **positive indicators** and **security findings**.
 
-Instead of flagging every email containing words such as **"verify"**, **"OTP"**, **"limited time"**, or **"click here"**, PhishGuard evaluates the **context** of the message and searches for genuine phishing indicators such as spoofed senders, malicious links, and credential requests.
+---
 
+# 🎯 How PhishGuard Works
 
-### 2️⃣ Is there actual evidence of phishing?
+PhishGuard analyzes every email in two intelligent stages.
 
-The analyzer searches for meaningful security indicators, including:
+## 1️⃣ Email Classification
 
-- Spoofed sender addresses
+The application first determines what kind of email it is.
+
+Supported categories include:
+
+- 📢 Marketing / Promotional
+- 🔐 Security / Account Notice
+- 📦 Transactional / Order Update
+- 📰 Newsletter
+- 👤 Personal Correspondence
+
+Understanding the purpose of an email allows the analyzer to interpret common phrases appropriately instead of treating every keyword as suspicious.
+
+---
+
+## 2️⃣ Security Analysis
+
+After identifying the email category, PhishGuard performs a comprehensive security inspection by analyzing:
+
+- Sender authenticity
+- Embedded URLs
 - Lookalike domains
 - Character substitution attacks
-- Insecure URLs (HTTP)
 - Suspicious top-level domains
+- Insecure HTTP links
 - Credential harvesting attempts
-- Requests to send passwords or OTPs over email
+- Requests for passwords or OTPs
+- Email spoofing indicators
 
-Only **real evidence** contributes significantly to the phishing score.
-
----
-
-## 🎯 Why Context Matters
-
-Older phishing detectors often produced false positives.
-
-For example:
-
-❌ **Old Behavior**
-
-> "Your OTP expires in 10 minutes"
-
-⬇
-
-Flagged as phishing simply because it contains:
-
-- OTP
-- expires
-- urgent language
+Rather than relying on isolated keywords, PhishGuard weighs multiple security indicators together to produce a more accurate phishing assessment.
 
 ---
 
-✅ **PhishGuard v2**
+## ✅ Transparent Decision Making
 
-Recognizes this as a legitimate security notification unless additional evidence exists such as:
+Most phishing detectors only report what appears suspicious.
 
-- Fake sender
-- Fake website
-- Credential request
+PhishGuard also highlights **positive indicators**, allowing users to understand **why an email appears legitimate**.
 
-The result is dramatically fewer false positives.
+Examples include:
+
+- Sender domain matches the official organization
+- Secure HTTPS links
+- No credential requests detected
+- Legitimate verification reminders
+- Trusted domain references
+
+This transparency makes the final verdict easier to understand and trust.
 
 ---
 
-# 🚀 Features
+# ✨ Features
 
 - 🛡️ Context-aware phishing detection
-- 📂 Automatic email category classification
-- 📊 Evidence-weighted risk scoring (0–100)
+- 📂 Automatic email classification
+- 📊 Evidence-based risk scoring (0–100)
 - ✅ Positive indicator reporting
 - 🌐 URL security analysis
 - 👤 Sender verification
 - 🔍 Lookalike domain detection
-- 🔠 Character substitution detection
+- 🔤 Character substitution detection
 - 🌍 Suspicious TLD detection
 - 🔒 Insecure HTTP detection
 - ⚠ Credential solicitation detection
 - 💡 Security recommendations
 - 📱 Responsive dashboard
-- 🎨 Modern inspection-style interface
+- 🎨 Professional inspection-style UI
 - 📝 Logging support
 - ❌ Robust error handling
 
 ---
 
-# 🔍 Detection Categories
+# 🔍 Email Categories
 
-PhishGuard automatically classifies emails into one of five categories.
+PhishGuard automatically classifies incoming emails into one of the following categories.
 
 | Category | Description |
-|----------|-------------|
-| 📢 Marketing | Promotions, offers, discounts |
+|-----------|-------------|
+| 📢 Marketing | Promotions, offers, coupons, discounts |
 | 🔐 Security | Login alerts, verification codes, password resets |
 | 📦 Transactional | Orders, invoices, shipping updates |
 | 📰 Newsletter | News digests and subscriptions |
@@ -106,105 +119,160 @@ PhishGuard automatically classifies emails into one of five categories.
 
 # 🔎 Detection Techniques
 
-The engine combines multiple layers of analysis.
+PhishGuard combines multiple security checks to improve detection accuracy.
 
-### 📧 Sender Analysis
+## 📧 Sender Analysis
 
-- Trusted domain verification
-- Brand domain matching
+- Official brand verification
+- Trusted domain matching
 - Free email provider detection
 - Suspicious sender identification
+- Sender-domain consistency checks
 
 ---
 
-### 🌐 URL Analysis
+## 🌐 URL Analysis
 
-- Lookalike domains
+- Lookalike domain detection
 - Character substitution attacks
-- Suspicious TLDs
-- HTTP detection
-- Shortened URLs
+- Suspicious TLD identification
+- HTTP vs HTTPS verification
+- Shortened URL detection
 - Domain mismatch analysis
 
 ---
 
-### 🛡️ Phishing Indicators
+## 🛡️ Phishing Indicators
 
-- Credential requests
+The detection engine searches for indicators such as:
+
+- Credential harvesting attempts
 - Password requests
 - Banking credential requests
-- Email reply credential harvesting
 - Fake login pages
+- Email reply credential theft
+- Social engineering language
 - Spoofing attempts
 
 ---
 
-### ✅ Positive Indicators
+## ✅ Positive Indicators
 
-Unlike most phishing detectors, PhishGuard also explains **why an email appears legitimate**.
+To reduce false positives, PhishGuard also detects legitimate characteristics.
 
 Examples include:
 
 - Sender domain matches official organization
-- HTTPS links
-- Reminder not to share OTP
+- HTTPS links detected
 - No credential requests
-- Trusted domain references
+- Security reminders advising users not to share OTPs
+- Trusted company domains
+- Expected transactional language
 
-This makes the final decision transparent and easier to understand.
+---
+
+# 📈 Risk Scoring
+
+Every analyzed email receives a risk score between **0 and 100**.
+
+| Score | Verdict |
+|--------|----------|
+| **0 – 20** | 🟢 Safe |
+| **21 – 49** | 🟡 Low Risk |
+| **50 – 74** | 🟠 Suspicious |
+| **75 – 100** | 🔴 High Risk / Phishing |
+
+The final score is generated using multiple weighted security indicators instead of simple keyword matching.
+
+---
 
 # 🖥️ User Interface
 
-The application includes a professionally designed interface featuring:
+The application features a modern inspection-style dashboard with:
 
-- Obsidian & gold theme
-- Responsive design
+- Obsidian & Gold theme
+- Responsive layout
 - Verdict medallion
+- Risk score visualization
 - Evidence panels
 - Positive indicators
-- Risk score visualization
-- Mobile-friendly layout
+- Detailed findings
+- Mobile-friendly design
 
 ---
 
 # 🔐 Security Features
 
-The application follows modern secure coding practices.
+PhishGuard follows modern secure coding practices inspired by OWASP recommendations.
 
 ### Backend Security
 
-- CSRF Protection
+- CSRF Protection (Flask-WTF)
 - Rate Limiting (10 requests/minute)
-- Secure HTTP Headers
 - Secure Session Cookies
 - Input Validation
-- HTML Sanitization
-- XSS Protection
+- HTML Sanitization (Bleach)
+- XSS Prevention
+- Secure Error Handling
 - OWASP-inspired secure coding practices
 
-### Security Headers
+---
+
+## Security Headers
 
 - Content Security Policy (CSP)
 - X-Frame-Options
 - X-Content-Type-Options
-- SameSite Cookies
 - HttpOnly Cookies
+- SameSite Cookies
 
+---
 
+# 📂 Project Architecture
+
+```text
+PhishGuard/
+│
+├── app.py
+├── analyzer.py
+├── utils.py
+├── test_app.py
+├── requirements.txt
+│
+├── templates/
+│   ├── index.html
+│   ├── result.html
+│   └── error.html
+│
+├── static/
+│   ├── style.css
+│   └── script.js
+│
+├── sample_emails/
+│   ├── phishing.txt
+│   ├── legitimate.txt
+│   ├── marketing.txt
+│   ├── verification.txt
+│   └── transactional.txt
+│
+├── logs/
+│
+└── README.md
+```
 
 ---
 
 # ⚙️ Installation
 
-## Clone the repository
+## Clone the Repository
 
 ```bash
-git clone https://github.com/abdulrehman-at3/PhishGuard.git
+git clone https://github.com/YOUR_USERNAME/PhishGuard.git
 ```
 
 ---
 
-## Navigate into the project
+## Navigate into the Project
 
 ```bash
 cd PhishGuard
@@ -212,7 +280,7 @@ cd PhishGuard
 
 ---
 
-## Install dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -220,15 +288,15 @@ pip install -r requirements.txt
 
 ---
 
-## Configure Secret Key
+## Configure Environment Variable
 
-Linux/macOS
+### Linux / macOS
 
 ```bash
 export SECRET_KEY="your-long-random-secret-key"
 ```
 
-Windows PowerShell
+### Windows PowerShell
 
 ```powershell
 $env:SECRET_KEY="your-long-random-secret-key"
@@ -236,7 +304,7 @@ $env:SECRET_KEY="your-long-random-secret-key"
 
 ---
 
-## Run the application
+## Run the Application
 
 ```bash
 python app.py
@@ -244,24 +312,44 @@ python app.py
 
 ---
 
+## Open Your Browser
+
+```
+http://127.0.0.1:5000
+```
+
 ---
 
-# 📋 Sample Workflow
+# 🚀 How It Works
 
 1. Launch the application.
 2. Paste an email into the analyzer.
 3. Click **Analyze Email**.
-4. View:
+4. View the generated report containing:
 
 - Email category
 - Risk score
 - Final verdict
 - Positive indicators
-- Findings
-- Suspicious URLs
+- Security findings
+- URL analysis
 - Security recommendations
 
-Five sample emails are included to demonstrate every supported category and show how PhishGuard distinguishes between legitimate messages and phishing attempts—even when both contain urgency-related language.
+---
+
+# 📄 Sample Emails
+
+Five sample emails are included to demonstrate the analyzer across different scenarios.
+
+| File | Category |
+|------|----------|
+| phishing.txt | Phishing Email |
+| legitimate.txt | Personal Email |
+| marketing.txt | Marketing Email |
+| verification.txt | Security / OTP Email |
+| transactional.txt | Order / Transaction Email |
+
+These examples demonstrate how PhishGuard distinguishes legitimate emails from phishing attempts using contextual analysis.
 
 ---
 
@@ -270,13 +358,13 @@ Five sample emails are included to demonstrate every supported category and show
 The project includes **35 automated tests** covering:
 
 - Email classification
-- False-positive regression cases
 - URL analysis
 - Credential solicitation detection
 - HTML sanitization
+- False-positive prevention
 - Flask routes
 - CSRF protection
-- Complete request/response lifecycle
+- Complete request-response lifecycle
 
 Install pytest:
 
@@ -284,7 +372,7 @@ Install pytest:
 pip install pytest
 ```
 
-Run the test suite:
+Run the tests:
 
 ```bash
 pytest test_app.py -v
@@ -294,17 +382,25 @@ pytest test_app.py -v
 
 # 🛠️ Technology Stack
 
+### Backend
+
 - Python
 - Flask
 - Flask-WTF
 - Flask-Limiter
-- Bootstrap 5
-- Bootstrap Icons
+
+### Frontend
+
 - HTML5
 - CSS3
 - JavaScript
+- Bootstrap 5
+- Bootstrap Icons
+
+### Security
+
 - Bleach
-- Jinja2
+- Jinja2 Autoescaping
 
 ### Typography
 
@@ -316,16 +412,17 @@ pytest test_app.py -v
 
 # 🚀 Future Improvements
 
-- 🤖 Machine Learning Classifier
+- 🤖 Machine Learning Classification
 - 🌐 VirusTotal API Integration
 - 🌍 WHOIS Domain Lookup
-- 📧 SPF/DKIM/DMARC Validation
+- 📧 SPF / DKIM / DMARC Validation
 - 📄 PDF Report Generation
-- 📂 `.eml` File Upload Support
+- 📂 Email (.eml) Upload Support
 - 👤 User Authentication
 - 📊 Scan History Dashboard
 - 📈 Detection Analytics
-- ☁ Docker Deployment
+- ☁️ Docker Deployment
+- 🔌 REST API Support
 
 ---
 
@@ -337,14 +434,33 @@ pytest test_app.py -v
 
 Passionate about cybersecurity, secure software development, phishing detection, and building practical defensive security tools.
 
+- GitHub: https://github.com/YOUR_USERNAME
+- LinkedIn: https://linkedin.com/in/YOUR_PROFILE
+
+---
+
+# 🤝 Contributing
+
+Contributions, feature requests, and suggestions are welcome.
+
+If you'd like to improve PhishGuard:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
+
 ---
 
 # ⭐ Support
 
-If you found this project useful, consider giving it a **⭐ Star** on GitHub. It helps others discover the project and motivates future development.
+If you found this project helpful, please consider giving it a **⭐ Star** on GitHub. It helps others discover the project and supports future development.
 
 ---
 
-## 📄 License
+# 📄 License
 
-This project is licensed under the **MIT License**. See the `LICENSE` file for more information.
+This project is licensed under the **MIT License**.
+
+See the **LICENSE** file for more information.
