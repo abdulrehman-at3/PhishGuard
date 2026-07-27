@@ -267,7 +267,7 @@ PhishGuard/
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/PhishGuard.git
+git clone https://github.com/abdulrehman-at3/PhishGuard.git
 ```
 
 ---
