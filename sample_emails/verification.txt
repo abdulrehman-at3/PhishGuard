@@ -1,0 +1,13 @@
+From: no-reply@github.com
+Subject: Your GitHub verification code
+
+Hi Abdul,
+
+Your one-time password (OTP) is: 738291
+
+This code will expire in 10 minutes. Never share this code with anyone, including GitHub staff.
+
+If you didn't request this code, you can safely ignore this email.
+
+Thanks,
+The GitHub Team

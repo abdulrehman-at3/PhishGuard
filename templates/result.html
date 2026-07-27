@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspection Result — PhishGuard</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            <i class="bi bi-shield-lock-fill"></i> PhishGuard
+        </a>
+        <a href="{{ url_for('index') }}" class="btn-analyze-again">
+            <i class="bi bi-arrow-repeat"></i> New Inspection
+        </a>
+    </div>
+</nav>
+
+<main class="container result-page">
+
+    <section class="glass-card">
+        <div class="verdict-block">
+            <div class="medallion medallion-{{ result.verdict_class }}">
+                <span class="medallion-label">{{ result.verdict }}</span>
+            </div>
+            <div class="verdict-meta-col">
+                <span class="verdict-eyebrow">Case Verdict</span>
+                <span class="category-badge"><i class="bi bi-tag-fill"></i> {{ result.category }}</span>
+                <p class="verdict-meta">Analyzed {{ result.analyzed_at }} · {{ result.char_count }} characters scanned</p>
+            </div>
+            <div class="verdict-score-block">
+                <span class="score-number">{{ result.score }}</span>
+                <span class="score-max">RISK SCORE / 100</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-row">
+        <div class="stats-card">
+            <i class="bi bi-flag-fill"></i>
+            <span class="stats-number">{{ result.flag_details|length }}</span>
+            <span class="stats-label">Findings</span>
+        </div>
+        <div class="stats-card">
+            <i class="bi bi-link-45deg"></i>
+            <span class="stats-number">{{ result.url_count }}</span>
+            <span class="stats-label">Links Found</span>
+        </div>
+        <div class="stats-card">
+            <i class="bi bi-envelope-fill"></i>
+            <span class="stats-number" title="{{ result.sender }}">{{ result.sender }}</span>
+            <span class="stats-label">Sender</span>
+        </div>
+    </div>
+
+    <section class="glass-card">
+        <h2><i class="bi bi-bar-chart-fill"></i> Risk Breakdown</h2>
+        <div class="progress-track">
+            <div class="progress-bar progress-{{ result.verdict_class }}" style="width: {{ result.score }}%;">{{ result.score }}%</div>
+        </div>
+    </section>
+
+    {% if result.positive_signals %}
+    <section class="glass-card summary-card">
+        <h2><i class="bi bi-patch-check-fill"></i> Positive Indicators</h2>
+        <ul class="positive-list">
+            {% for signal in result.positive_signals %}
+            <li class="positive-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>{{ signal }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    {% if result.flag_details %}
+    <section class="glass-card summary-card">
+        <h2><i class="bi bi-flag-fill"></i> Findings</h2>
+        <ul class="flag-list">
+            {% for flag in result.flag_details %}
+            <li class="flag-item severity-{{ flag.severity }}">
+                <i class="bi bi-record-circle-fill"></i>
+                <span>{{ flag.text }}</span>
+                <span class="severity-tag">{{ flag.severity }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% else %}
+    <section class="glass-card summary-card">
+        <h2><i class="bi bi-check-circle"></i> No Findings</h2>
+        <p>PhishGuard didn't find common phishing indicators in this message. Stay cautious anyway — always verify unexpected requests through a separate, trusted channel.</p>
+    </section>
+    {% endif %}
+
+    {% if result.urls %}
+    <section class="glass-card summary-card">
+        <h2><i class="bi bi-link-45deg"></i> Links Found</h2>
+        {% for link in result.urls %}
+        <div class="url-block">
+            <p class="url-text"><i class="bi bi-box-arrow-up-right"></i> {{ link.url }}</p>
+            {% if link.flags %}
+            <ul class="url-flag-list">
+                {% for f in link.flags %}
+                <li>{{ f }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="url-clean"><i class="bi bi-check2"></i> No obvious red flags on this link.</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="glass-card summary-card">
+        <h2><i class="bi bi-lightbulb-fill"></i> Recommended Actions</h2>
+        <ul class="recommend-list">
+            {% for rec in result.recommendations %}
+            <li><i class="bi bi-arrow-right-short"></i> {{ rec }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <div class="result-cta">
+        <a href="{{ url_for('index') }}" class="btn-analyze"><i class="bi bi-arrow-repeat"></i> Analyze Another Message</a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="container text-center">
+        <p>PhishGuard — built for cybersecurity awareness education.</p>
+    </div>
+</footer>
+
+<button id="scrollTopBtn" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></button>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

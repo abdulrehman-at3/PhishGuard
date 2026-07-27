@@ -1,0 +1,21 @@
+Subject: Urgent Account Verification Required
+
+Dear Customer,
+
+Your online banking account has been temporarily suspended due to suspicious login activity.
+
+To restore access immediately, verify your account by clicking the secure link below.
+
+http://secure-bank-login.xyz/verify
+
+Failure to verify your account within 24 hours will result in permanent suspension.
+
+Please provide:
+
+• Username
+• Password
+• ATM PIN
+• One-Time Password (OTP)
+
+Thank you,
+Security Department

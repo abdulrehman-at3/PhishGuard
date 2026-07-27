@@ -1,0 +1,17 @@
+Subject: Meeting Reminder
+
+Hi Abdul,
+
+This is a reminder that our project meeting is scheduled for tomorrow at 2:00 PM.
+
+Agenda:
+
+• Review progress
+• Discuss pending tasks
+• Plan next sprint
+
+If you cannot attend, please let us know beforehand.
+
+Regards,
+
+Project Manager
